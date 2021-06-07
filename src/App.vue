@@ -1,14 +1,74 @@
 <template>
   <v-app>
     <v-app-bar app color="transparent" elevation="0" elevate-on-scroll>
-      <span class="text-h5" @click="$router.push('/')" style="cursor: pointer">
+      <v-icon
+        color="accent"
+        :size="$vuetify.breakpoint.smAndDown ? '30' : '40'"
+        class="mr-3"
+        >mdi-desktop-mac</v-icon
+      >
+      <span
+        v-if="!$vuetify.breakpoint.smAndDown"
+        class="text-body-1"
+        @click="$router.push('/')"
+        style="cursor: pointer"
+      >
         PC Parts API
       </span>
+
       <v-spacer></v-spacer>
 
-      <v-btn outlined rounded class="accent--text" color="accent" to="login">
-        <v-icon class="mr-2" color="accent">mdi-account</v-icon>
-        <span class="mr-5">Login</span>
+      <v-btn
+        text
+        :class="{
+          'mr-4': !$vuetify.breakpoint.smAndDown,
+          'pa-0': $vuetify.breakpoint.smAndDown,
+        }"
+      >
+        <v-icon v-if="!$vuetify.breakpoint.smAndDown">mdi-github</v-icon>
+        <span>Website</span>
+      </v-btn>
+      <v-btn
+        text
+        :class="{
+          'mr-4': !$vuetify.breakpoint.smAndDown,
+          'pa-0': $vuetify.breakpoint.smAndDown,
+        }"
+      >
+        <v-icon v-if="!$vuetify.breakpoint.smAndDown">mdi-github</v-icon>
+        <span>API</span>
+      </v-btn>
+
+      <v-btn
+        :outlined="!$vuetify.breakpoint.smAndDown"
+        :rounded="!$vuetify.breakpoint.smAndDown"
+        class="accent--text"
+        :class="{ 'pa-16': $vuetify.breakpoint.smAndDown }"
+        color="accent"
+        to="login"
+        v-if="!isLoggedIn"
+      >
+        <v-icon
+          :class="{
+            'mr-2': !$vuetify.breakpoint.smAndDown,
+            'pa-0': $vuetify.breakpoint.smAndDown,
+          }"
+          color="accent"
+          >mdi-account</v-icon
+        >
+        <span v-if="!$vuetify.breakpoint.smAndDown">Login</span>
+      </v-btn>
+      <v-btn outlined rounded class="accent--text" color="accent" v-else>
+        <v-icon
+          :class="{
+            'mr-2': !$vuetify.breakpoint.smAndDown,
+            'pa-0': $vuetify.breakpoint.smAndDown,
+          }"
+          color="accent"
+        >
+          mdi-account
+        </v-icon>
+        <span v-if="!$vuetify.breakpoint.smAndDown">Account</span>
       </v-btn>
     </v-app-bar>
 
@@ -22,9 +82,23 @@
 export default {
   name: "App",
 
+  computed: {
+    isLoggedIn: function () {
+      return this.$store.state.loggedIn;
+    },
+  },
+
   data: () => ({
     //
   }),
+
+  created() {
+    let authCookie = this.$cookie.get("_PCPARTS.AUTH");
+
+    if (authCookie != null) {
+      this.$store.commit("setLoggedIn", true);
+    }
+  },
 };
 </script>
 
