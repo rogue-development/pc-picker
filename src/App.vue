@@ -1,32 +1,35 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar app color="transparent" elevation="0" elevate-on-scroll>
+      <span class="text-h5" @click="$router.push('/')" style="cursor: pointer">
+        PC Parts API
+      </span>
+      <v-spacer></v-spacer>
+
+      <v-btn outlined rounded class="accent--text" color="accent" to="login">
+        <v-icon class="mr-2" color="accent">mdi-account</v-icon>
+        <span class="mr-5">Login</span>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  name: "App",
 
-#nav {
-  padding: 30px;
+  data: () => ({
+    //
+  }),
+};
+</script>
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+<style>
+.bg-accent {
+  background-color: var(--v-accent-base);
 }
 </style>

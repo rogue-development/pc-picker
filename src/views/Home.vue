@@ -1,18 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <p v-for="cpu in allCPU" :key="cpu.model">
+      {{ cpu.brand }} | {{ cpu.model }} | {{ cpu.cores }} Cores ({{
+        cpu.threads
+      }}
+      Threads)
+    </p>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { gql } from "graphql-tag";
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  name: "Home",
+
+  apollo: {
+    allCPU: gql`
+      query getAllCPUs {
+        allCPU {
+          brand
+          model
+          cores
+          threads
+        }
+      }
+    `,
+  },
+};
 </script>
