@@ -16,10 +16,8 @@ jobs:
       - name: Generate .env file
         uses: SpicyPizza/create-envfile@v1
         with:
-          # envkey_DB_USER: ${{ secrets.DB_USER }}
           envkey_VUE_APP_GRAPHQL_HTTP: ${{ secrets.GRAPHQL_URL }}
           envkey_VUE_APP_REST_HTTP: ${{ secrets.REST_URL }}
-          envkey_VUE_APP_GRAPHQL_HTTPS: ${{ secrets.GRAPHQL_HTTPS }}
           envkey_VUE_APP_COOKIE_DOMAIN: ${{ secrets.COOKIE_DOMAIN }}
       
       - name: Build project
