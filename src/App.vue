@@ -40,10 +40,9 @@
       </v-btn>
 
       <v-btn
-        :outlined="!$vuetify.breakpoint.smAndDown"
-        :rounded="!$vuetify.breakpoint.smAndDown"
+        outlined
+        rounded
         class="accent--text"
-        :class="{ 'pa-16': $vuetify.breakpoint.smAndDown }"
         color="accent"
         to="login"
         v-if="!isLoggedIn"
@@ -109,5 +108,15 @@ export default {
 <style>
 .bg-accent {
   background-color: var(--v-accent-base);
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
 }
 </style>
