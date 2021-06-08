@@ -99,6 +99,10 @@ export default {
       this.$store.commit("setLoggedIn", true);
     }
   },
+
+  mounted() {
+    console.log(process.env.VUE_APP_GRAPHQL_API_URL);
+  },
 };
 </script>
 
