@@ -107,7 +107,7 @@ import gql from "graphql-tag";
 
 const env = {
   AUTH_COOKIE_NAME: "_PCPARTS.AUTH",
-  COOKIE_DOMAIN: "localhost",
+  COOKIE_DOMAIN: process.env.VUE_APP_COOKIE_DOMAIN,
 };
 
 export default {
